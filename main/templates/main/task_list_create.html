@@ -1,0 +1,17 @@
+{% extends 'main/base_layout.html' %}
+
+{% block content %}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'main:task_lists' %}">Task Lists</a></li>
+        </ol>
+    </nav>
+    <form method="POST" novalidate>
+        <p class="lead mb-3">Create new task list</p>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="btn btn-success" value="Create">
+    </form>
+</div>
+{% endblock %}

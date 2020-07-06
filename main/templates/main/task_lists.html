@@ -1,0 +1,40 @@
+{% extends 'main/base_layout.html' %}
+
+{% block content %}
+<div class="container">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'main:task_lists' %}">Task Lists</a></li>
+        </ol>
+    </nav>
+
+    <a class="btn btn-primary mb-3" href="{% url 'main:task_list_create' %}">Create new task list</a>
+    <br>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="w-50">Title</th>
+                <th class="w-25">Date and Time</th>
+                <th class="w-25">Functions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in task_lists %}
+            <tr>
+                <td>
+                    <a href="{% url 'main:tasks' task_list_id=item.pk %}">{{ item.title }} <i height="20" data-feather="arrow-right"></i></a>
+                </td>
+                <td>{{ item.datetime }}</td>
+                <td>
+                    <a href="{% url 'main:task_list_update' pk=item.pk %}"><i height="20" data-feather="edit-3"></i></a>
+                    <a href="{% url 'main:task_list_delete' pk=item.pk %}" class="ml-3 text-danger"><i height="20" data-feather="x"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'main/base_layout.html' %}
+
+{% block content %}
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'main:task_lists' %}">Task Lists</a></li>
+        </ol>
+    </nav>
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <p class="lead mb-3">Delete task list</p>
+        <p>Title: {{ tasklist.title }}</p>
+        <p>Date and time of creating: {{ tasklist.datetime }}</p>
+        <input type="submit" class="btn btn-success" value="Delete">
+    </form>
+</div>
+{% endblock %}
